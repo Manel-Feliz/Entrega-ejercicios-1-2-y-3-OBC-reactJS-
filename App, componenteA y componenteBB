@@ -1,0 +1,69 @@
+--------------------------------------------------------------------------------------------------
+
+import ContactoB  from './components/complex/ComponenteB.jsx';
+
+function App() {
+  return (
+    <div>
+      <ContactoB></ContactoB>
+    </div>
+  );
+}
+
+export default App;
+
+--------------------------------------------------------------------------------------------------------------------
+
+import PropTypes from 'prop-types';
+
+export class Contacto {
+    nombre="";
+    apellido="";
+    email= "";
+    conectado= false;
+
+
+    constructor(nombre, apellido, email, conectado) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.email = email;
+        this.conectado = conectado
+
+    }
+}
+
+
+Contacto.propTypes = {
+    nombre: PropTypes.string,
+    apellido: PropTypes.string,
+    email: PropTypes.string,
+    conectado: PropTypes.bool,
+};
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+import { Contacto } from "../pure/ComponenteA";
+import PropTypes from 'prop-types';
+
+
+const ContactoB = ({ Contacto }) => {
+    return (
+        <div>
+            <h2>
+                Nombre: { Contacto.nombre }
+                Apellido: { Contacto.apellido }
+                Email: { Contacto.email }
+                Está conectado o no: { Contacto.conectado ? "Contacto En Línea" : "Contacto No Disponible" }
+            </h2>
+        </div>
+    );
+};
+
+ContactoB.propTypes = {
+    Contacto: PropTypes.instanceOf(Contacto)
+};
+
+
+export default ContactoB;
+
+---------------------------------------------------------------------------------------------------------------------
